@@ -26,6 +26,12 @@ export default class MyDocument extends Document {
           <title>My page</title>
           {/* Step 5: Output the styles in the head  */}
           {this.props.styleTags}
+          <link
+  rel="stylesheet"
+  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+  crossorigin="anonymous"
+/>
         </Head>
         <body>
           <Main />
