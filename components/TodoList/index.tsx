@@ -1,6 +1,6 @@
 import React from "react";
-import Container from "react-bootstrap/Container";
 import ListGroup from "react-bootstrap/ListGroup";
+import TodoItem from "../TodoItem";
 
 type P = {
   todos: Array<{
@@ -13,13 +13,11 @@ type P = {
 const TodoList: React.FC<P> = props => {
   const { todos } = props;
   return (
-    <Container>
-      <ListGroup>
-        {todos.map(todo => (
-          <ListGroup.Item key={todo.id}>{todo.task}</ListGroup.Item>
-        ))}
-      </ListGroup>
-    </Container>
+    <ListGroup>
+      {todos.map(todo => (
+        <TodoItem task={todo.task} key={todo.id} completed={todo.completed} />
+      ))}
+    </ListGroup>
   );
 };
 
