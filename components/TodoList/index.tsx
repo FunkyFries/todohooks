@@ -8,14 +8,22 @@ type P = {
     task: string;
     completed: boolean;
   }>;
+  removeTodo: any;
+  toggleCompletion: any;
 };
 
-const TodoList: React.FC<P> = props => {
-  const { todos } = props;
+const TodoList: React.FC<P> = ({ todos, removeTodo, toggleCompletion }) => {
   return (
     <ListGroup>
       {todos.map(todo => (
-        <TodoItem task={todo.task} key={todo.id} completed={todo.completed} />
+        <TodoItem
+          task={todo.task}
+          key={todo.id}
+          id={todo.id}
+          completed={todo.completed}
+          removeTodo={removeTodo}
+          toggleCompletion={toggleCompletion}
+        />
       ))}
     </ListGroup>
   );
