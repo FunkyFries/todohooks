@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
@@ -7,36 +7,41 @@ import TodoForm from "../TodoForm";
 import uuid from "uuid/v4";
 
 const TodoApp: React.FC = () => {
-  const seedTodos = [
-    { id: "1", task: "Clean fish", completed: false },
-    { id: "2", task: "Wash car", completed: true },
-    { id: "3", task: "Grow beard", completed: false }
-  ];
-  const [todos, setTodos] = React.useState(seedTodos);
+  const [todos, setTodos] = React.useState([
+    { id: "", task: "", completed: false }
+  ]);
+
+  useEffect(() => {
+    const storedTodos = localStorage.getItem("todos");
+    setTodos(storedTodos !== null ? JSON.parse(storedTodos) : []);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
 
   const addTodo = (newTask: string) => {
     setTodos([...todos, { id: uuid(), task: newTask, completed: false }]);
   };
 
   const removeTodo = (todoId: string) => {
-    const updatedTodos = todos.filter(todo => todo.id !== todoId);
+    const updatedTodos = todos.filter((todo: any) => todo.id !== todoId);
     setTodos(updatedTodos);
   };
 
   const toggleCompletion = (todoId: string) => {
-    const updatedTodos = todos.map(todo =>
+    const updatedTodos = todos.map((todo: any) =>
       todo.id === todoId ? { ...todo, completed: !todo.completed } : todo
     );
     setTodos(updatedTodos);
   };
 
   const editTodo = (todoId: string, newTask: string) => {
-    const updatedTodos = todos.map(todo =>
+    const updatedTodos = todos.map((todo: any) =>
       todo.id === todoId ? { ...todo, task: newTask } : todo
     );
     setTodos(updatedTodos);
   };
-
   return (
     <div>
       <Navbar bg="dark" variant="dark">

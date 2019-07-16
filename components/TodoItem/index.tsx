@@ -38,6 +38,8 @@ const TodoItem: React.FC<P> = ({
           type="text"
           value={value}
           onChange={handleChange}
+          autoFocus
+          onBlur={toggleIsEditing}
         ></Form.Control>
       </Form>
     </ListGroupItem>
