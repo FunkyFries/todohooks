@@ -10,9 +10,15 @@ type P = {
   }>;
   removeTodo: any;
   toggleCompletion: any;
+  editTodo: any;
 };
 
-const TodoList: React.FC<P> = ({ todos, removeTodo, toggleCompletion }) => {
+const TodoList: React.FC<P> = ({
+  todos,
+  removeTodo,
+  toggleCompletion,
+  editTodo
+}) => {
   return (
     <ListGroup>
       {todos.map(todo => (
@@ -23,6 +29,7 @@ const TodoList: React.FC<P> = ({ todos, removeTodo, toggleCompletion }) => {
           completed={todo.completed}
           removeTodo={removeTodo}
           toggleCompletion={toggleCompletion}
+          editTodo={editTodo}
         />
       ))}
     </ListGroup>

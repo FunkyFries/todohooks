@@ -30,6 +30,13 @@ const TodoApp: React.FC = () => {
     setTodos(updatedTodos);
   };
 
+  const editTodo = (todoId: string, newTask: string) => {
+    const updatedTodos = todos.map(todo =>
+      todo.id === todoId ? { ...todo, task: newTask } : todo
+    );
+    setTodos(updatedTodos);
+  };
+
   return (
     <div>
       <Navbar bg="dark" variant="dark">
@@ -42,6 +49,7 @@ const TodoApp: React.FC = () => {
             todos={todos}
             removeTodo={removeTodo}
             toggleCompletion={toggleCompletion}
+            editTodo={editTodo}
           />
         </Col>
       </Container>
