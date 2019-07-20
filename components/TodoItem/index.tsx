@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, memo } from "react";
 import ListGroupItem from "react-bootstrap/ListGroupItem";
 import Form from "react-bootstrap/Form";
 import FormCheck from "react-bootstrap/FormCheck";
@@ -63,4 +63,4 @@ const TodoItem: React.FC<P> = ({ task, completed, id }) => {
   );
 };
 
-export default TodoItem;
+export default memo(TodoItem);
