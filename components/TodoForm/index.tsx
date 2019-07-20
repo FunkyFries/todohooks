@@ -5,10 +5,10 @@ import { TodosContext } from "../../contexts/todos.context";
 
 const TodoForm: React.FC = () => {
   const [value, handleChange, reset] = useInputState("");
-  const { addTodo } = useContext(TodosContext);
+  const { dispatch } = useContext(TodosContext);
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    addTodo(value);
+    dispatch({ type: "ADD", task: value });
     reset();
   };
   return (

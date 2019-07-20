@@ -14,12 +14,12 @@ type P = {
 };
 
 const TodoItem: React.FC<P> = ({ task, completed, id }) => {
-  const { removeTodo, toggleCompletion, editTodo } = useContext(TodosContext);
+  const { dispatch } = useContext(TodosContext);
   const [isEditing, toggleIsEditing] = useToggle(false);
   const [value, handleChange] = useInputState(task);
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    editTodo(id, value);
+    dispatch({ type: "EDIT", newTask: value, id: id });
     toggleIsEditing();
   };
   return isEditing ? (
@@ -41,7 +41,7 @@ const TodoItem: React.FC<P> = ({ task, completed, id }) => {
         type="checkbox"
         checked={completed}
         inline
-        onChange={() => toggleCompletion(id)}
+        onChange={() => dispatch({ type: "TOGGLE", id })}
       />
       {completed ? <del>{task}</del> : task}
       <Button
@@ -55,7 +55,7 @@ const TodoItem: React.FC<P> = ({ task, completed, id }) => {
       <Button
         aria-label="delete"
         variant="outline-dark"
-        onClick={() => removeTodo(id)}
+        onClick={() => dispatch({ type: "REMOVE", id })}
       >
         <i className="fas fa-trash" aria-hidden></i>
       </Button>
