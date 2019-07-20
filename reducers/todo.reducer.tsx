@@ -5,6 +5,7 @@ type Options = {
   task?: string;
   id?: string;
   newTask?: string;
+  storedTodos?: any;
 };
 
 type Todos = {
@@ -15,6 +16,8 @@ type Todos = {
 
 const reducer = (state: Todos[], action: Options) => {
   switch (action.type) {
+    case "SET":
+      return action.storedTodos;
     case "ADD":
       return [...state, { id: uuid(), task: action.task, completed: false }];
     case "REMOVE":
