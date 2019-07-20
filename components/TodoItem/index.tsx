@@ -5,7 +5,7 @@ import FormCheck from "react-bootstrap/FormCheck";
 import Button from "react-bootstrap/Button";
 import useToggle from "../../hooks/useToggle";
 import useInputState from "../../hooks/useInputState";
-import { TodosContext } from "../../contexts/todos.context";
+import { DispatchContext } from "../../contexts/todos.context";
 
 type P = {
   task: string;
@@ -14,7 +14,7 @@ type P = {
 };
 
 const TodoItem: React.FC<P> = ({ task, completed, id }) => {
-  const { dispatch } = useContext(TodosContext);
+  const dispatch: any = useContext(DispatchContext);
   const [isEditing, toggleIsEditing] = useToggle(false);
   const [value, handleChange] = useInputState(task);
   const handleSubmit = (e: any) => {

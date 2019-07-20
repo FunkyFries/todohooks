@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
 import Form from "react-bootstrap/Form";
 import useInputState from "../../hooks/useInputState";
-import { TodosContext } from "../../contexts/todos.context";
+import { DispatchContext } from "../../contexts/todos.context";
 
 const TodoForm: React.FC = () => {
   const [value, handleChange, reset] = useInputState("");
-  const { dispatch } = useContext(TodosContext);
+  const dispatch: any = useContext(DispatchContext);
   const handleSubmit = (e: any) => {
     e.preventDefault();
     dispatch({ type: "ADD", task: value });

@@ -4,7 +4,7 @@ import TodoItem from "../TodoItem";
 import { TodosContext } from "../../contexts/todos.context";
 
 const TodoList: React.FC = () => {
-  const { todos } = useContext(TodosContext);
+  const todos: any = useContext(TodosContext);
   return (
     <ListGroup>
       {todos.map((todo: any) => (
