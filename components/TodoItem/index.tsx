@@ -1,28 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
 import ListGroupItem from "react-bootstrap/ListGroupItem";
 import Form from "react-bootstrap/Form";
 import FormCheck from "react-bootstrap/FormCheck";
 import Button from "react-bootstrap/Button";
 import useToggle from "../../hooks/useToggle";
 import useInputState from "../../hooks/useInputState";
+import { TodosContext } from "../../contexts/todos.context";
 
 type P = {
   task: string;
   completed: boolean;
   id: string;
-  removeTodo: any;
-  toggleCompletion: any;
-  editTodo: any;
 };
 
-const TodoItem: React.FC<P> = ({
-  task,
-  completed,
-  id,
-  removeTodo,
-  toggleCompletion,
-  editTodo
-}) => {
+const TodoItem: React.FC<P> = ({ task, completed, id }) => {
+  const { removeTodo, toggleCompletion, editTodo } = useContext(TodosContext);
   const [isEditing, toggleIsEditing] = useToggle(false);
   const [value, handleChange] = useInputState(task);
   const handleSubmit = (e: any) => {

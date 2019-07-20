@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import Form from "react-bootstrap/Form";
 import useInputState from "../../hooks/useInputState";
+import { TodosContext } from "../../contexts/todos.context";
 
-const TodoForm: React.FC<{ addTodo: any }> = ({ addTodo }) => {
+const TodoForm: React.FC = () => {
   const [value, handleChange, reset] = useInputState("");
+  const { addTodo } = useContext(TodosContext);
   const handleSubmit = (e: any) => {
     e.preventDefault();
     addTodo(value);
@@ -18,6 +20,7 @@ const TodoForm: React.FC<{ addTodo: any }> = ({ addTodo }) => {
           value={value}
           onChange={handleChange}
           placeholder="Todo"
+          autoComplete="off"
         ></Form.Control>
       </Form.Group>
     </Form>

@@ -1,36 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import ListGroup from "react-bootstrap/ListGroup";
 import TodoItem from "../TodoItem";
+import { TodosContext } from "../../contexts/todos.context";
 
-type P = {
-  todos: Array<{
-    id: string;
-    task: string;
-    completed: boolean;
-  }>;
-  removeTodo: any;
-  toggleCompletion: any;
-  editTodo: any;
-};
-
-const TodoList: React.FC<P> = ({
-  todos,
-  removeTodo,
-  toggleCompletion,
-  editTodo
-}) => {
+const TodoList: React.FC = () => {
+  const { todos } = useContext(TodosContext);
   return (
     <ListGroup>
-      {todos.map(todo => (
-        <TodoItem
-          task={todo.task}
-          key={todo.id}
-          id={todo.id}
-          completed={todo.completed}
-          removeTodo={removeTodo}
-          toggleCompletion={toggleCompletion}
-          editTodo={editTodo}
-        />
+      {todos.map((todo: any) => (
+        <TodoItem key={todo.id} {...todo} />
       ))}
     </ListGroup>
   );
